@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static "todo.css" %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container" align='center'>
+        
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">TO DO LIST</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+           
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+        <table border="1px" class="table table-bordered table-hover">
+            <thead>
+              
+                        <th><h4>TASK</h4></th>
+                        <th><h4>Date</h4></th>
+                        <th><h4>Time</h4></th>
+            
+                        <th><h4>ACTION</h4></th>
+                
+               
+            </thead>
+
+            {% for i in task_list %}
+            <tr>
+            <td><h4><i class="fa fa-thumb-tack" aria-hidden="true"></i> {{i.task}}</h4></td>
+            <td><h4>{{i.date}}</h4></td>
+            <td><h4>{{i.time}}</h4></td>
+            <td><a href="/delete/{{i.id}}" class="btn btn-outline-danger">DELETE</a></td>  
+        </tr>
+        {% endfor %}
+    </table>
+    
+ 
+    <form class="row" method="POST" action="/insert/">
+        {% csrf_token %}
+        
+        <div class="col-md-4">
+        <input  class="form-control mr-sm-2" type="text" name="task" placeholder="Enter new Task..." ><br>
+        <input class="form-control mr-sm-2" type="date" name="date" placeholder="Enter date..." ><br>
+        <input class="form-control mr-sm-2" type="time" name="time" placeholder="Enter time..." ><br>
+        <input type="submit" name="" id="">
+    </div>
+    </form>
+    
+</div>
+
+
+</body>
+</html>
+
+
